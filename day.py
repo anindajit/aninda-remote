@@ -1,21 +1,33 @@
-import datetime
+import calendar
 
-def get_day_of_week():
+def display_calendar():
+    print("--- Python Calendar Tool ---")
+    print("1. Display a specific month")
+    print("2. Display a full year")
+    
+    choice = input("Enter your choice (1 or 2): ").strip()
+    
     try:
-        year = int(input("Enter year (YYYY): "))
-        month = int(input("Enter month (1-12): "))
-        day = int(input("Enter day (1-31): "))
-
-        # Create a date object
-        date_obj = datetime.date(year, month, day)
-        
-        # Get the day name (e.g., Monday, Tuesday)
-        day_name = date_obj.strftime("%A")
-        
-        print(f"The day on {date_obj} is {day_name}.")
-        
+        if choice == '1':
+            year = int(input("Enter year (e.g., 2026): "))
+            month = int(input("Enter month (1-12): "))
+            
+            if 1 <= month <= 12:
+                # calendar.month() prints a single formatted month
+                print("\n" + calendar.month(year, month))
+            else:
+                print("Error: Month must be between 1 and 12.")
+                
+        elif choice == '2':
+            year = int(input("Enter year (e.g., 2026): "))
+            # calendar.calendar() prints the entire year
+            print("\n" + calendar.calendar(year))
+            
+        else:
+            print("Invalid choice! Please select 1 or 2.")
+            
     except ValueError:
-        print("Invalid date. Please enter numeric values for year, month, and day.")
+        print("Error: Please enter valid numeric values.")
 
 if __name__ == "__main__":
-    get_day_of_week()
+    display_calendar()
